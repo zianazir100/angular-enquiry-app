@@ -1,0 +1,232 @@
+<div class="container p-5">
+  <div class="mb-3 d-flex align-items-center gap-2">
+    <span class="badge-id"> <i class="fa-solid fa-inbox me-1"></i>New Enquiry </span>
+  </div>
+
+  <div class="form-card">
+    <!-- Header -->
+    <div class="form-header d-flex align-items-center gap-3">
+      <div>
+        <i class="fa-solid fa-comments fs-4 text-white opacity-75"></i>
+      </div>
+      <div>
+        <h4>Enquiry Form</h4>
+        <p>Capture all customer enquiry details below</p>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="form-body">
+      <form>
+        <!-- ── CUSTOMER INFORMATION ── -->
+        <p class="section-label"><i class="fa-solid fa-user me-1"></i>Customer Information</p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="customerName" class="form-label">
+              Customer Name <span class="required-star">*</span>
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input
+                type="text"
+                class="form-control"
+                id="customerName"
+                name="customerName"
+                placeholder="Full name"
+                [(ngModel)]="enquiryObj.customerName"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="customerEmail" class="form-label">
+              Email Address <span class="required-star">*</span>
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-at"></i></span>
+              <input
+                type="email"
+                class="form-control"
+                id="customerEmail"
+                name="customerEmail"
+                placeholder="email@example.com"
+                [(ngModel)]="enquiryObj.customerEmail"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="customerPhone" class="form-label">Phone Number</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+              <input
+                type="tel"
+                class="form-control"
+                id="customerPhone"
+                name="customerPhone"
+                placeholder="+43 000 000 0000"
+                [(ngModel)]="enquiryObj.customerPhone"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="enquiryType" class="form-label">
+              Enquiry Type <span class="required-star">*</span>
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
+              <select
+                class="form-select"
+                id="enquiryType"
+                name="enquiryType"
+                [(ngModel)]="enquiryObj.enquiryType"
+              >
+                <option value="" disabled selected>Select type…</option>
+                <option value="General">General</option>
+                <option value="Sales">Sales</option>
+                <option value="Support">Support</option>
+                <option value="Billing">Billing</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ENQUIRY DETAILS ── -->
+        <p class="section-label"><i class="fa-solid fa-file-lines me-1"></i>Enquiry Details</p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="categoryId" class="form-label">Category</label>
+            <select
+              class="form-select"
+              id="categoryId"
+              name="categoryId"
+              [(ngModel)]="enquiryObj.categoryId"
+            >
+              <option value="" disabled selected>Select category…</option>
+              @for (item of categoriesList; track $index) {
+                <option [value]="item.categoryId">{{ item.categoryName }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="statusId" class="form-label">Status</label>
+            <select
+              class="form-select"
+              id="statusId"
+              name="statusId"
+              [(ngModel)]="enquiryObj.statusId"
+            >
+              <option value="" disabled selected>Select status…</option>
+              @for (item of statusList; track $index) {
+                <option [value]="item.statusId">{{ item.statusName }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label for="message" class="form-label">
+              Message <span class="required-star">*</span>
+            </label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              placeholder="Describe the enquiry in detail…"
+              rows="4"
+              [(ngModel)]="enquiryObj.message"
+            ></textarea>
+          </div>
+
+          <div class="col-12">
+            <label for="feedback" class="form-label">Feedback / Notes</label>
+            <textarea
+              class="form-control"
+              id="feedback"
+              name="feedback"
+              placeholder="Internal notes or customer feedback…"
+              rows="3"
+              [(ngModel)]="enquiryObj.feedback"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- ── DATES & CONVERSION ── -->
+        <p class="section-label"><i class="fa-solid fa-calendar me-1"></i>Dates &amp; Conversion</p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="enquiryDate" class="form-label">
+              Enquiry Date <span class="required-star">*</span>
+            </label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-day"></i></span>
+              <input
+                type="datetime-local"
+                class="form-control"
+                id="enquiryDate"
+                name="enquiryDate"
+                [(ngModel)]="enquiryObj.enquiryDate"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="followUpDate" class="form-label">Follow-up Date</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-check"></i></span>
+              <input
+                type="datetime-local"
+                class="form-control"
+                id="followUpDate"
+                name="followUpDate"
+                [(ngModel)]="enquiryObj.followUpDate"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check form-switch ps-0 d-flex align-items-center gap-3">
+              <input
+                class="form-check-input ms-0"
+                aria-checked="false"
+                type="checkbox"
+                role="switch"
+                id="isConverted"
+                name="isConverted"
+                style="width: 2.5em; height: 1.35em; cursor: pointer"
+                [(ngModel)]="enquiryObj.isConverted"
+              />
+              <label class="form-check-label" for="isConverted">
+                <span class="fw-semibold">Mark as Converted</span>
+                <span class="text-muted ms-1" style="font-size: 0.8rem"
+                  >— enquiry has been converted to a sale or lead</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ACTIONS ── -->
+        <hr class="my-4" style="border-color: #e2e8f0" />
+        <div class="d-flex justify-content-end gap-2 flex-wrap">
+          <button type="button" class="btn btn-outline-secondary btn-reset" (click)="resetEnquiry()">
+            <i class="fa-solid fa-xmark me-1"></i>Reset
+          </button>
+          <button type="submit" class="btn btn-primary btn-submit text-white" (click)="submitEnquiry()">
+            <i class="fa-solid fa-paper-plane me-1"></i>Submit Enquiry
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p class="text-center text-muted mt-3" style="font-size: 0.78rem">
+    Fields marked <span style="color: #ef4444">*</span> are required
+  </p>
+</div>
