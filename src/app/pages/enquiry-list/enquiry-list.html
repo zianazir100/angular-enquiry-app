@@ -1,0 +1,171 @@
+<div>
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <h2><i class="fa-solid fa-inbox me-2 opacity-75"></i>Enquiry Management</h2>
+          <p>Track and manage all customer enquiries</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-light btn-sm fw-semibold">
+            <i class="fa-solid fa-file-export me-1"></i>Export
+          </button>
+          <button class="btn btn-warning btn-sm fw-semibold text-dark">
+            <i class="fa-solid fa-plus me-1"></i>New Enquiry
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- ── STATS BAR ── -->
+    <div class="stats-bar">
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-inbox"></i></div>
+            <div>
+              <div class="stat-value">24</div>
+              <div class="stat-label">Total Enquiries</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="stat-value">8</div>
+              <div class="stat-label">In Progress</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+              <div class="stat-value">11</div>
+              <div class="stat-label">Resolved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-arrows-turn-to-dots"></i></div>
+            <div>
+              <div class="stat-value">6</div>
+              <div class="stat-label">Converted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOOLBAR ── -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="form-control" placeholder="Search by name, email, message…" />
+      </div>
+
+      <select class="form-select" style="width: auto">
+        <option value="">All Types</option>
+        <option>Product</option>
+        <option>Service</option>
+        <option>Billing</option>
+        <option>Support</option>
+        <option>General</option>
+      </select>
+
+      <select class="form-select" style="width: auto">
+        <option value="">All Statuses</option>
+        <option value="1">New</option>
+        <option value="2">In Progress</option>
+        <option value="3">Awaiting Customer</option>
+        <option value="4">Resolved</option>
+        <option value="5">Closed</option>
+      </select>
+
+      <select class="form-select" style="width: auto">
+        <option value="">Sort: Newest</option>
+        <option>Sort: Oldest</option>
+        <option>Sort: Name A–Z</option>
+      </select>
+    </div>
+
+    <!-- ── ENQUIRY CARDS GRID ── -->
+    <div class="row g-3 mb-5">
+      <!-- ── CARD 1 ── -->
+      @for (enq of enquiresList(); track $index) {
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="enquiry-card">
+            <div class="card-accent accent-resolved"></div>
+            <div class="card-body-inner">
+              <div class="card-top">
+                <div>
+                  <div class="enquiry-id">#ENQ-{{ enq.enquiryId }}</div>
+                  <div class="customer-name">{{ enq.customerName }}</div>
+                </div>
+                <span class="status-badge status-4">Resolved</span>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-item">
+                  <i class="fa-solid fa-at"></i>
+                  {{ enq.customerEmail }}
+                </div>
+                <div class="contact-item">
+                  <i class="fa-solid fa-phone"></i>
+                  {{ enq.customerPhone }}
+                </div>
+              </div>
+
+              <div class="message-box">{{ enq.message }}</div>
+
+              <div class="meta-row">
+                <span class="chip chip-type">
+                  <i class="fa-solid fa-tag"></i> {{ enq.enquiryType }}
+                </span>
+                <!-- @if (enq.isConverted) {
+                  <span class="chip chip-converted">
+                    <i class="fa-solid fa-circle-check"></i>Converted
+                  </span>
+                } -->
+              </div>
+
+              <div class="dates-row">
+                <div class="date-item">
+                  <span class="date-label"
+                    ><i class="fa-solid fa-calendar-day me-1"></i>Enquiry</span
+                  >
+                  <span class="date-value">{{ enq.enquiryDate }}</span>
+                </div>
+
+                <div class="date-item">
+                  <span class="date-label"
+                    ><i class="fa-solid fa-calendar-check me-1"></i>Follow-up</span
+                  >
+                  <span class="date-value">{{ enq.followUpDate }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer-inner">
+              <button class="btn-icon" title="View"><i class="fa-solid fa-eye"></i></button>
+              <button class="btn-icon" title="Edit"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn-icon danger" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
