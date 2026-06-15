@@ -28,7 +28,7 @@ export const routes: Routes = [
     component: Dashboard,
   },
   {
-    path: 'enquiry-list',
+    path: 'enquiries-list',
     component: EnquiryList,
   },
 ];

@@ -18,4 +18,8 @@ export class MasterService {
   submitSingleEnquiry(enquiry: any) {
     return this.http.post(this.root + 'create-enquiry', enquiry);
   }
+
+  getAllEnquries() {
+    return this.http.get(this.root + 'get-enquiries');
+  }
 }
